@@ -1,38 +1,337 @@
+/* CSS Reset para melhor consistência entre dispositivos */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  background: inherit;
+}
+
+.login-container {
+  background: white;
+  padding: clamp(1rem, 5vw, 2rem);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow-x: hidden;
+}
+
+.login-container h1 {
+  color: #1e3c72;
+  margin-bottom: clamp(1.5rem, 4vw, 2rem);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 3vw, 1.5rem);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
+
+.form-group input {
+  width: 100%;
+  padding: clamp(0.6rem, 2vw, 0.8rem);
+  border: 2px solid #e1e1e1;
+  border-radius: 5px;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  transition: all 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  /* para iOS */
+}
+
+.form-group input:focus {
+  border-color: #1e3c72;
+  outline: none;
+}
+
+.login-button {
+  background: #1e3c72;
+  color: white;
+  width: 100%;
+  padding: clamp(0.8rem, 2.5vw, 1rem);
+  border: none;
+  border-radius: 5px;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+  touch-action: manipulation;
+  /* melhor resposta ao toque */
+}
+
+.login-button:hover,
+.login-button:focus {
+  background: #2a5298;
+  transform: translateY(-1px);
+}
+
+.login-button:active {
+  transform: translateY(1px);
+}
+
+.error-message {
+  color: #dc3545;
+  margin-top: -0.5rem;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  text-align: left;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #1e3c72;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 96%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-left {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-button {
+  background: transparent;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-button {
+  background: transparent;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.dropdown-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 180px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 0.5rem 0;
+  z-index: 1001;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+.dropdown-content button {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dropdown-content button:hover {
+  background: #f5f5f5;
+  color: #1e3c72;
+}
+
+.main-content {
+  flex: 1;
+  margin-top: 30px;
+  padding: 2rem;
+  color: rgb(0, 0, 0);
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.main-content h1 {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  margin-bottom: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .dropdown-content {
+    width: 100%;
+    position: static;
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .dropdown-content button {
+    color: white;
+  }
+
+  .dropdown-content button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+}
+
+.logout-button {
+  background: #1e3c72;
+  color: white;
+  padding: clamp(0.1rem, 2vw, 0.5rem) clamp(1rem, 3vw, 1.5rem);
+  border: none;
+  border-radius: 5px;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  touch-action: manipulation;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.logout-button:hover,
+.logout-button:focus {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+
+}
+
+.logout-button:active {
+  transform: translateY(1px);
+}
+
+/* Media Queries para diferentes dispositivos */
+@media (max-width: 480px) {
+  .login-container {
+    width: 95%;
+    padding: 1rem;
+    position: fixed;
+  }
+
+  .form-group input {
+    font-size: 16px;
+    /* previne zoom em iOS */
+    max-width: 100%;
+  }
+
+  .form-group {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+/* Suporte para modo escuro do sistema */
+@media (prefers-color-scheme: dark) {
+  .login-container {
+    background: #1a1a1a;
+    color: #fff;
+  }
+
+  .login-container h1 {
+    color: #fff;
+  }
+
+  .form-group label {
+    color: #0d00ff;
+  }
+
+  .login-label {
+    color: #ffffff;
+  }
+
+  .form-group input {
+    background: #ffffff;
+    border-color: #404040;
+    color: #000000;
+  }
+
+  .form-group input:focus {
+    border-color: #4a90e2;
+  }
+}
+
+/* Suporte para redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }
